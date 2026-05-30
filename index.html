@@ -9,192 +9,263 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', Times, serif, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
         }
 
         body {
-            background-color: #f4f4f4;
-        }
-
-        /* Üst Menü Barı - Dikey yerleşim için flex-direction column yapıldı */
-        .header-bar {
-            background-color: #ffffff;
-            padding: 10px 15px;
+            background-color: #FDFBF7;
+            color: #1C1C1C;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- ÜST MENÜ BARI --- */
+        .header-bar {
+            background-color: #FDFBF7;
+            padding: 15px 0 15px 0;
+            display: flex;
+            flex-direction: column;
             position: relative;
             z-index: 10;
         }
 
-        /* En üst satır: Menü ve Sepet simgeleri */
         .top-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            padding: 0 20px 15px 20px;
         }
 
-        /* En Üst En Solda Menü Tuşu */
         .menu-btn {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
-            color: #333;
-        }
-
-        /* En Üst En Sağda Sepet Simgesi */
-        .cart-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Aramayı biraz alta almak için konteyner */
-        .search-container {
+            color: #C5A880;
             display: flex;
             align-items: center;
-            width: 100%;
-            margin-top: 15px; /* Arama biraz alta alındı */
-            margin-bottom: 5px;
+            justify-content: center;
+            height: 46px;
+            width: 46px;
         }
 
-        /* Yazı Yazma Yeri */
-        .search-input {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px 0 0 4px;
-            outline: none;
-            font-size: 14px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-height: 46px;
         }
 
-        /* Sağında Ara Simgesi (Buton yerine simge) */
-        .search-btn {
-            background-color: #51b549;
-            color: white;
-            border: 1px solid #51b549;
-            padding: 10px 18px;
-            border-radius: 0 4px 4px 0;
+        .logo-container img {
+            max-height: 35px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .cart-btn {
+            background-color: #C5A880;
+            border: 1px solid #C5A880;
+            width: 60px;
+            height: 46px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            white-space: nowrap;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .search-btn:hover {
-            background-color: #439e3c;
+        .cart-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #FDFBF7;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        /* Animasyonlu Açılan Menü */
-        .sidebar-menu {
+        .search-divider {
+            width: 100%;
+            border: none;
+            border-top: 1px solid rgba(197, 168, 128, 0.4);
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            padding: 0 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #C5A880;
+            border-right: none;
+            background-color: #FDFBF7;
+            color: #1C1C1C;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+            height: 46px;
+        }
+
+        .search-btn {
+            background-color: #C5A880;
+            color: #FDFBF7;
+            border: 1px solid #C5A880;
+            width: 60px;
+            height: 46px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: #FDFBF7;
+            stroke-width: 3.5;
+            fill: none;
+        }
+
+        .main-content { flex: 1; }
+
+        .site-footer {
+            background-color: #FDFBF7;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #1C1C1C;
+            border-top: none;
+            margin-top: 40px;
+        }
+
+        .site-footer a { color: #C5A880; text-decoration: none; font-weight: bold; }
+
+        /* --- YAN PANELLER GENEL --- */
+        .sidebar {
             position: fixed;
             top: 0;
-            left: -300px; /* Başlangıçta gizli */
-            width: 300px;
             height: 100%;
-            background-color: #ffffff;
-            box-shadow: 3px 0 10px rgba(0,0,0,0.2);
-            transition: left 0.4s ease; /* Menü animasyonlu açılacak */
-            z-index: 20;
-            padding: 20px;
+            background-color: #FDFBF7;
+            box-shadow: 0 0 25px rgba(28, 28, 28, 0.15);
+            transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 30;
+            padding: 25px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
-        .sidebar-menu.active {
-            left: 0;
-        }
+        /* --- SOL MENÜ --- */
+        .sidebar-menu { left: -320px; width: 320px; border-right: 1px solid rgba(197, 168, 128, 0.3); }
+        .sidebar-menu.active { left: 0; }
 
-        /* Menü Kapatma Çarpı Butonu */
-        .close-menu-btn {
-            align-self: flex-end;
+        /* Kapat yazısı yerine menü işareti yapılan buton */
+        .menu-close-trigger {
+            align-self: flex-start;
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 28px;
             cursor: pointer;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        /* Aynı satırda üyelik ve sipariş takibi */
-        .menu-top-row {
+            color: #C5A880;
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 25px;
+            align-items: center;
+            justify-content: center;
+            height: 46px;
+            width: 46px;
         }
 
-        .menu-top-btn {
-            flex: 1;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
+        /* SAĞ PANEL GENİŞLİKLERİ VE KONUMLARI */
+        .sidebar-cart { right: -340px; width: 340px; border-left: 1px solid rgba(197, 168, 128, 0.3); }
+        .sidebar-cart.active { right: 0; }
+
+        .sidebar-tracking { right: -360px; width: 360px; border-left: 1px solid rgba(197, 168, 128, 0.3); }
+        .sidebar-tracking.active { right: 0; }
+
+        .sidebar-auth { right: -380px; width: 380px; border-left: 1px solid rgba(197, 168, 128, 0.3); }
+        .sidebar-auth.active { right: 0; }
+
+        .sidebar-contact { right: -360px; width: 360px; border-left: 1px solid rgba(197, 168, 128, 0.3); }
+        .sidebar-contact.active { right: 0; }
+
+        .close-btn { align-self: flex-start; background: none; border: none; cursor: pointer; color: #1C1C1C; margin-bottom: 20px; font-size: 13px; font-weight: bold; }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(28, 28, 28, 0.4); display: none; z-index: 15; backdrop-filter: blur(2px); }
+        .overlay.active { display: block; }
+
+        .dev-stage-container { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .dev-stage-text { font-size: 16px; font-style: italic; color: #1C1C1C; opacity: 0.8; font-weight: 500; }
+
+        /* --- ÜYELİK PANELİ TASARIMI --- */
+        .auth-tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 25px; }
+        .auth-tab { flex: 1; text-align: center; padding: 15px; cursor: pointer; font-weight: bold; color: #aaa; transition: 0.3s; font-family: Arial, sans-serif; }
+        .auth-tab.active { color: #1C1C1C; border-bottom: 3px solid #C5A880; }
+
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+
+        .toggle-container { display: flex; background: #f0f0f0; border-radius: 8px; padding: 4px; margin-bottom: 20px; }
+        .toggle-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; background: transparent; color: #666; transition: 0.3s; }
+        .toggle-btn.active { background: #fff; color: #1C1C1C; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        .form-group { margin-bottom: 15px; position: relative; }
+        .form-group label { display: block; font-size: 14px; margin-bottom: 8px; font-family: Arial, sans-serif; font-weight: 500; }
+        .form-input { width: 100%; padding: 12px; padding-right: 45px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; font-family: Arial, sans-serif; }
+        .form-input:focus { border-color: #C5A880; }
+
+        /* Elle Çizilen SVG Göz İkonu Alanı */
+        .password-toggle-container { 
+            position: absolute; 
+            right: 12px; 
+            top: 36px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+        .password-toggle-container svg {
+            width: 22px;
+            height: 22px;
+            stroke: #C5A880;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
         }
 
-        /* Kategorileri keşfet başlığı (hep açık kalacak) */
-        .category-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #222;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
+        .forgot-password { display: block; text-align: right; font-size: 13px; color: #1C1C1C; text-decoration: none; margin-bottom: 20px; font-family: Arial, sans-serif; }
 
-        /* Kategorinin altında kategori geliştirme aşamasında yazısı */
-        .category-status {
-            font-size: 14px;
-            color: #777;
-            font-style: italic;
-            margin-bottom: 30px;
-            padding-left: 5px;
-        }
+        .submit-btn { width: 100%; padding: 15px; background: #C5A880; color: #FDFBF7; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-bottom: 15px; transition: 0.3s; }
+        .submit-btn:hover { background: #b0946e; }
 
-        /* En altta bize ulaşın tuşu */
-        .contact-btn {
-            margin-top: auto; /* Sayfanın en altına iter */
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            text-align: center;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; font-size: 12px; line-height: 1.4; color: #444; font-family: Arial, sans-serif; }
+        .checkbox-group input { margin-top: 3px; }
+        .checkbox-group a { color: #1C1C1C; text-decoration: underline; }
 
-        .contact-btn:hover {
-            background-color: #0056b3;
-        }
+        /* --- MENÜ BUTONLARI --- */
+        .menu-top-row { display: flex; gap: 10px; margin-bottom: 15px; }
+        .menu-btn-item { flex: 1; padding: 12px; border: 1px solid #C5A880; border-radius: 4px; text-align: center; cursor: pointer; font-size: 13px; font-weight: bold; color: #1C1C1C; }
+        .menu-btn-item:hover { background: #C5A880; color: #FDFBF7; }
+        .menu-full-btn { width: 100%; padding: 12px; background: #C5A880; color: #FDFBF7; border-radius: 4px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 15px; }
 
-        /* Arka Plan Karartması */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            display: none;
-            z-index: 15;
-        }
-
-        .overlay.active {
-            display: block;
-        }
+        .category-title { font-size: 15px; font-weight: bold; color: #C5A880; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 10px; text-transform: uppercase; }
+        .category-status { font-size: 12px; font-style: italic; color: #888; margin-bottom: 30px; }
+        .contact-link-btn { margin-top: auto; padding: 15px; background: none; border: 1px solid #C5A880; color: #C5A880; border-radius: 4px; font-weight: bold; cursor: pointer; text-align: center; }
     </style>
 </head>
 <body>
@@ -202,57 +273,172 @@
     <header class="header-bar">
         <div class="top-row">
             <button class="menu-btn" id="openMenuBtn">☰</button>
-            <button class="cart-btn">🛒</button>
+            <div class="logo-container"><img src="assets/logo.png" alt="Logo"></div>
+            <button class="cart-btn" id="openCartBtn">
+                <svg viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </button>
         </div>
-        
+        <hr class="search-divider">
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Ürün, kategori ara">
-            <button class="search-btn">🔍</button>
+            <button class="search-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="16" y1="16" x2="21" y2="21"></line></svg></button>
         </div>
     </header>
 
-    <div class="overlay" id="menuOverlay"></div>
+    <main class="main-content"></main>
 
-    <nav class="sidebar-menu" id="sidebarMenu">
-        <button class="close-menu-btn" id="closeMenuBtn">✕ Kapat</button>
-        
+    <footer class="site-footer">
+        muhammed251210ai.github.io/-rnek-site olarak kişisel verilerinizin gizliliğini önemsiyoruz. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında oluşturduğumuz aydınlatma metnine <a href="#">buradan</a> ulaşabilirsiniz.
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+
+    <nav class="sidebar sidebar-menu" id="sidebarMenu">
+        <button class="menu-close-trigger" id="closeMenuBtn">☰</button>
         <div class="menu-top-row">
-            <div class="menu-top-btn">Üyelik</div>
-            <div class="menu-top-btn">Sipariş Takibi</div>
+            <div class="menu-btn-item" id="menuAuthBtn">Üyelik</div>
+            <div class="menu-btn-item" id="menuTrackingBtn">Sipariş Takibi</div>
         </div>
-
+        <button class="menu-full-btn" id="menuCartBtn">Sepetim</button>
         <div class="category-title">Kategorileri Keşfet</div>
-        
         <div class="category-status">Kategori geliştirme aşamasında</div>
-
-        <button class="contact-btn">Bize Ulaşın</button>
+        <div class="contact-link-btn" id="menuContactBtn">Bize Ulaşın</div>
     </nav>
 
+    <div class="sidebar sidebar-auth" id="sidebarAuth">
+        <button class="close-btn" id="closeAuthBtn">✕ KAPAT</button>
+        <div class="auth-tabs">
+            <div class="auth-tab active" id="tabLogin">Giriş Yap</div>
+            <div class="auth-tab" id="tabSignup">Üye Ol</div>
+        </div>
+        
+        <div class="auth-form active" id="formLogin">
+            <div class="form-group"><label>E-posta</label><input type="email" class="form-input" placeholder="E-posta adresiniz"></div>
+            <div class="form-group">
+                <label>Şifre</label>
+                <input type="password" class="form-input" id="loginPass" placeholder="Şifre">
+                <span class="password-toggle-container" onclick="togglePass('loginPass', 'loginEyeIcon')">
+                    <svg id="loginEyeIcon" viewBox="0 0 24 24">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </span>
+            </div>
+            <a href="#" class="forgot-password">Şifremi Unuttum</a>
+            <button class="submit-btn">Giriş Yap</button>
+        </div>
+        
+        <div class="auth-form" id="formSignup">
+            <div class="toggle-container"><button class="toggle-btn active" id="btnBireysel">Bireysel</button><button class="toggle-btn" id="btnKurumsal">Kurumsal</button></div>
+            <div class="form-group"><label>Ad Soyad</label><input type="text" class="form-input" placeholder="Adınız Soyadınız"></div>
+            <div class="form-group"><label>E-posta</label><input type="email" class="form-input" placeholder="E-posta adresiniz"></div>
+            <div class="form-group">
+                <label>Şifre</label>
+                <input type="password" class="form-input" id="signupPass" placeholder="Şifre">
+                <span class="password-toggle-container" onclick="togglePass('signupPass', 'signupEyeIcon')">
+                    <svg id="signupEyeIcon" viewBox="0 0 24 24">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </span>
+            </div>
+            <div class="checkbox-group"><input type="checkbox"><span>Çiçeksepeti tarafından tarafıma ticari <a href="#">elektronik ileti</a> gönderilmesine izin veriyorum.</span></div>
+            <div class="checkbox-group"><input type="checkbox"><span><a href="#">Kişisel Verilerin İşlenmesi ve Aktarımına Dair Aydınlatma Metni</a>'ni okudum, anladım. *</span></div>
+            <p style="font-size: 11px; color: #888; margin-bottom: 20px;">Üyelik oluşturmakla <a href="#" style="color:#1C1C1C;">Üyelik Sözleşmesi</a>'ni kabul etmiş olursunuz.</p>
+            <button class="submit-btn">Üye Ol</button>
+        </div>
+    </div>
+
+    <div class="sidebar sidebar-cart" id="sidebarCart">
+        <button class="close-btn" id="closeCartBtn">✕ KAPAT</button>
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <p style="margin-bottom:20px; font-weight:bold;">Sepetinizde ürün bulunmamaktadır.</p>
+            <button class="submit-btn" onclick="closeAll()">Alışverişe Başla</button>
+        </div>
+    </div>
+
+    <div class="sidebar sidebar-tracking" id="sidebarTracking">
+        <button class="close-btn" id="closeTrackingBtn">✕ KAPAT</button>
+        <h2 style="text-align:center; margin-bottom:30px;">Sipariş Takibi</h2>
+        <div class="form-group"><label>Sipariş Numaranız</label><input type="text" class="form-input" placeholder="Sipariş numaranızı giriniz"></div>
+        <div class="form-group"><label>E-posta Adresiniz</label><input type="email" class="form-input" placeholder="E-posta adresinizi giriniz"></div>
+        <button class="submit-btn">Sorgula</button>
+    </div>
+
+    <div class="sidebar sidebar-contact" id="sidebarContact">
+        <button class="close-btn" id="closeContactBtn">✕ KAPAT</button>
+        <h2 style="text-align:center; margin-bottom:20px; font-family: Arial, sans-serif;">Bize Ulaşın</h2>
+        <div class="dev-stage-container">
+            <div class="dev-stage-text">sekme geliştirme aşamasında...</div>
+        </div>
+    </div>
+
     <script>
-        // Menü elemanlarının tanımlanması
-        const openMenuBtn = document.getElementById('openMenuBtn');
-        const closeMenuBtn = document.getElementById('closeMenuBtn');
         const sidebarMenu = document.getElementById('sidebarMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
+        const sidebarAuth = document.getElementById('sidebarAuth');
+        const sidebarCart = document.getElementById('sidebarCart');
+        const sidebarTracking = document.getElementById('sidebarTracking');
+        const sidebarContact = document.getElementById('sidebarContact');
+        const overlay = document.getElementById('overlay');
 
-        // Menüyü Açma Fonksiyonu
-        openMenuBtn.addEventListener('click', () => {
-            sidebarMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-        });
+        // Panelleri Açma
+        document.getElementById('openMenuBtn').onclick = () => { sidebarMenu.classList.add('active'); overlay.classList.add('active'); }
+        document.getElementById('menuAuthBtn').onclick = () => { closeAll(); sidebarAuth.classList.add('active'); overlay.classList.add('active'); }
+        document.getElementById('menuTrackingBtn').onclick = () => { closeAll(); sidebarTracking.classList.add('active'); overlay.classList.add('active'); }
+        document.getElementById('menuCartBtn').onclick = () => { closeAll(); sidebarCart.classList.add('active'); overlay.classList.add('active'); }
+        document.getElementById('openCartBtn').onclick = () => { closeAll(); sidebarCart.classList.add('active'); overlay.classList.add('active'); }
+        document.getElementById('menuContactBtn').onclick = () => { closeAll(); sidebarContact.classList.add('active'); overlay.classList.add('active'); }
 
-        // Menüyü Kapatma Fonksiyonu
-        closeMenuBtn.addEventListener('click', () => {
-            sidebarMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
+        // Panelleri Kapatma
+        function closeAll() { 
+            [sidebarMenu, sidebarAuth, sidebarCart, sidebarTracking, sidebarContact, overlay].forEach(el => el.classList.remove('active'));
+        }
+        document.getElementById('closeMenuBtn').onclick = closeAll;
+        document.getElementById('closeAuthBtn').onclick = closeAll;
+        document.getElementById('closeCartBtn').onclick = closeAll;
+        document.getElementById('closeTrackingBtn').onclick = closeAll;
+        document.getElementById('closeContactBtn').onclick = closeAll;
+        overlay.onclick = closeAll;
 
-        // Karartmaya tıklandığında da menüyü kapatma
-        menuOverlay.addEventListener('click', () => {
-            sidebarMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
+        // Sekme Değiştirme (Giriş / Üye Ol)
+        document.getElementById('tabLogin').onclick = function() {
+            this.classList.add('active'); document.getElementById('tabSignup').classList.remove('active');
+            document.getElementById('formLogin').classList.add('active'); document.getElementById('formSignup').classList.remove('active');
+        }
+        document.getElementById('tabSignup').onclick = function() {
+            this.classList.add('active'); document.getElementById('tabLogin').classList.remove('active');
+            document.getElementById('formSignup').classList.add('active'); document.getElementById('formLogin').classList.remove('active');
+        }
+
+        // Üye Ol (Bireysel / Kurumsal)
+        document.getElementById('btnBireysel').onclick = function() {
+            this.classList.add('active'); document.getElementById('btnKurumsal').classList.remove('active');
+        }
+        document.getElementById('btnKurumsal').onclick = function() {
+            this.classList.add('active'); document.getElementById('btnBireysel').classList.remove('active');
+        }
+
+        // Şifre Göster/Gizle ve Dinamik SVG Göz Değiştirme Sistemi
+        function togglePass(inputId, svgId) {
+            const input = document.getElementById(inputId);
+            const svgElement = document.getElementById(svgId);
+            
+            if (input.type === "password") {
+                input.type = "text";
+                // Çizim: Açık Göz Tasarımı
+                svgElement.innerHTML = `
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                `;
+            } else {
+                input.type = "password";
+                // Çizim: Üzeri Çizgili Kapalı Göz Tasarımı
+                svgElement.innerHTML = `
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                `;
+            }
+        }
     </script>
-
 </body>
 </html>
