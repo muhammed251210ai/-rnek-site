@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alışveriş Sitesi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* Üst Menü Barı - Dikey yerleşim için flex-direction column yapıldı */
+        .header-bar {
+            background-color: #ffffff;
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* En üst satır: Menü ve Sepet simgeleri */
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* En Üst En Solda Menü Tuşu */
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* En Üst En Sağda Sepet Simgesi */
+        .cart-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Aramayı biraz alta almak için konteyner */
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 15px; /* Arama biraz alta alındı */
+            margin-bottom: 5px;
+        }
+
+        /* Yazı Yazma Yeri */
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        /* Sağında Ara Simgesi (Buton yerine simge) */
+        .search-btn {
+            background-color: #51b549;
+            color: white;
+            border: 1px solid #51b549;
+            padding: 10px 18px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-btn:hover {
+            background-color: #439e3c;
+        }
+
+        /* Animasyonlu Açılan Menü */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Başlangıçta gizli */
+            width: 300px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+            transition: left 0.4s ease; /* Menü animasyonlu açılacak */
+            z-index: 20;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-menu.active {
+            left: 0;
+        }
+
+        /* Menü Kapatma Çarpı Butonu */
+        .close-menu-btn {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Aynı satırda üyelik ve sipariş takibi */
+        .menu-top-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .menu-top-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Kategorileri keşfet başlığı (hep açık kalacak) */
+        .category-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* Kategorinin altında kategori geliştirme aşamasında yazısı */
+        .category-status {
+            font-size: 14px;
+            color: #777;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding-left: 5px;
+        }
+
+        /* En altta bize ulaşın tuşu */
+        .contact-btn {
+            margin-top: auto; /* Sayfanın en altına iter */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .contact-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Arka Plan Karartması */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            display: none;
+            z-index: 15;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-bar">
+        <div class="top-row">
+            <button class="menu-btn" id="openMenuBtn">☰</button>
+            <button class="cart-btn">🛒</button>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Ürün, kategori ara">
+            <button class="search-btn">🔍</button>
+        </div>
+    </header>
+
+    <div class="overlay" id="menuOverlay"></div>
+
+    <nav class="sidebar-menu" id="sidebarMenu">
+        <button class="close-menu-btn" id="closeMenuBtn">✕ Kapat</button>
+        
+        <div class="menu-top-row">
+            <div class="menu-top-btn">Üyelik</div>
+            <div class="menu-top-btn">Sipariş Takibi</div>
+        </div>
+
+        <div class="category-title">Kategorileri Keşfet</div>
+        
+        <div class="category-status">Kategori geliştirme aşamasında</div>
+
+        <button class="contact-btn">Bize Ulaşın</button>
+    </nav>
+
+    <script>
+        // Menü elemanlarının tanımlanması
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        // Menüyü Açma Fonksiyonu
+        openMenuBtn.addEventListener('click', () => {
+            sidebarMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+        });
+
+        // Menüyü Kapatma Fonksiyonu
+        closeMenuBtn.addEventListener('click', () => {
+            sidebarMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Karartmaya tıklandığında da menüyü kapatma
+        menuOverlay.addEventListener('click', () => {
+            sidebarMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>
